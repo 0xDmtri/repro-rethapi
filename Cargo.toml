@@ -5,29 +5,31 @@ edition = "2021"
 
 [dependencies]
 
-reth-provider = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.0", tag = "v1.1.0" }
-reth-db = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.0", tag = "v1.1.0" }
-reth-node-types = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.0", tag = "v1.1.0" }
-reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.0", tag = "v1.1.0" }
-reth-chainspec = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.0", tag = "v1.1.0" }
-reth-chain-state = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.0", tag = "v1.1.0" }
-reth-primitives = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.0", tag = "v1.1.0" }
-reth-primitives-traits = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0", default-features = false }
-reth-rpc = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-rpc-server-types = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-rpc-eth-types = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-rpc-types-compat = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-blockchain-tree = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-beacon-consensus = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-transaction-pool = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-tasks = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-network-api = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-db-api = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-storage-errors = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-libmdbx = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
-reth-rpc-eth-api = { git = "https://github.com/paradigmxyz/reth", version = "1.1.0", tag = "v1.1.0" }
+reth-provider = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.1", tag = "v1.1.1" }
+reth-db = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.1", tag = "v1.1.1" }
+reth-node-types = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.1", tag = "v1.1.1" }
+reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.1", tag = "v1.1.1" }
+reth-chainspec = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.1", tag = "v1.1.1" }
+reth-chain-state = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.1", tag = "v1.1.1" }
+reth-primitives = { git = "https://github.com/paradigmxyz/reth.git", version = "1.1.1", tag = "v1.1.1" }
+reth-primitives-traits = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1", default-features = false }
+reth-rpc = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-rpc-server-types = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-rpc-eth-types = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-rpc-types-compat = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-blockchain-tree = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-beacon-consensus = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-transaction-pool = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-tasks = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-network-api = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-db-api = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-storage-errors = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-libmdbx = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-rpc-eth-api = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
+reth-network = { git = "https://github.com/paradigmxyz/reth", version = "1.1.1", tag = "v1.1.1" }
 
 alloy-rpc-types = "0.5.4"
+alloy-eips = "0.5.4"
 
 eyre = "0.6.12"
 tokio = { version = "1.41", features = ["full"] }

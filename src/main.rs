@@ -1,18 +1,20 @@
-use eyre::Result;
 use std::path::Path;
 use std::sync::Arc;
 
+use alloy_eips::eip1559::ETHEREUM_BLOCK_GAS_LIMIT;
 use alloy_rpc_types::simulate::MAX_SIMULATE_BLOCKS;
+use eyre::Result;
+
 use reth_beacon_consensus::EthBeaconConsensus;
 use reth_blockchain_tree::{
     BlockchainTree, BlockchainTreeConfig, ShareableBlockchainTree, TreeExternals,
 };
 use reth_chainspec::ChainSpecBuilder;
 use reth_db::{open_db_read_only, DatabaseEnv};
-use reth_network_api::noop::NoopNetwork;
+use reth_network::config::rng_secret_key;
+use reth_network::{NetworkConfig, NetworkManager};
 use reth_node_ethereum::{EthEvmConfig, EthExecutorProvider, EthereumNode};
 use reth_node_types::NodeTypesWithDBAdapter;
-use reth_primitives::constants::ETHEREUM_BLOCK_GAS_LIMIT;
 use reth_provider::CanonStateSubscriptions;
 use reth_provider::{
     providers::{BlockchainProvider, StaticFileProvider},
@@ -31,9 +33,11 @@ use reth_transaction_pool::{
     TransactionValidationTaskExecutor,
 };
 
+const NODE_PATH: &str = "/storage/reth/mainnet";
+
 #[tokio::main]
 async fn main() -> Result<()> {
-    let reth_api = get_reth_api("your_path_to_node")?;
+    let reth_api = get_reth_api(NODE_PATH).await?;
 
     let mut stream = reth_api.provider().subscribe_to_canonical_state();
 
@@ -58,10 +62,10 @@ type RethTxPool = Pool<
     CoinbaseTipOrdering<EthPooledTransaction>,
     NoopBlobStore,
 >;
-type RethApi = EthApi<RethProvider, RethTxPool, NoopNetwork, EthEvmConfig>;
+type RethApi = EthApi<RethProvider, RethTxPool, reth_network::NetworkHandle, EthEvmConfig>;
 
 /// Make this chain agnostic
-pub fn get_reth_api(path: impl ToString) -> Result<RethApi> {
+async fn get_reth_api(path: impl ToString) -> Result<RethApi> {
     let db_path = path.to_string();
     let db_path = Path::new(&db_path);
     let db = open_db_read_only(&db_path.join("db"), Default::default())?;
@@ -119,10 +123,20 @@ pub fn get_reth_api(path: impl ToString) -> Result<RethApi> {
         FeeHistoryCacheConfig::default(),
     );
 
+    let network_config = NetworkConfig::builder(rng_secret_key())
+        .mainnet_boot_nodes()
+        .with_unused_listener_port()
+        .with_unused_discovery_port()
+        .build(provider.clone());
+
+    let network = NetworkManager::new(network_config).await?;
+    let network_handle = network.handle().clone();
+    tokio::spawn(network);
+
     let api = EthApi::new(
         provider.clone(),
         tx_pool,
-        NoopNetwork::default(),
+        network_handle,
         state_cache.clone(),
         GasPriceOracle::new(provider, GasPriceOracleConfig::default(), state_cache),
         ETHEREUM_BLOCK_GAS_LIMIT,
